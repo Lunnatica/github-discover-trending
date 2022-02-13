@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import { Header } from '../components/Header';
 import { ResultsLayout } from '../components/ResultsLayout';
+import { StarsContextProvider } from '../contexts/StarsContext';
 import { GithubResult } from '../interfaces/GithubResults';
 
 const Home = ({
@@ -14,8 +15,10 @@ const Home = ({
             <Head>
                 <title>Github Trending Discovery</title>
             </Head>
-            <Header />
-            <ResultsLayout errorCode={errorCode} results={results} />
+            <StarsContextProvider>
+                <Header />
+                <ResultsLayout errorCode={errorCode} results={results} />
+            </StarsContextProvider>
         </>
     );
 };
