@@ -7,7 +7,7 @@ describe('StarButton', () => {
 
     describe('given a non-Starred repo', () => {
         beforeEach(() => {
-            const instance = <StarButton isFav={false} />;
+            const instance = <StarButton id="1" />;
             render(instance);
         });
 
@@ -25,7 +25,7 @@ describe('StarButton', () => {
 
     describe('given a Starred repo', () => {
         beforeEach(() => {
-            const instance = <StarButton isFav={true} />;
+            const instance = <StarButton id="2" />;
             render(instance);
         });
 

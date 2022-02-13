@@ -9,7 +9,6 @@ describe('<ResultCard />', () => {
         description: 'description',
         stargazers_count: 'stars',
         html_url: 'url',
-        isFav: false,
         language: 'Javascript',
         created_at: 'created_at',
     };

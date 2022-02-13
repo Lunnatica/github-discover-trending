@@ -31,7 +31,6 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
                             description,
                             stargazers_count,
                             html_url,
-                            isFav = false,
                             language,
                             created_at,
                         }) => {
@@ -43,7 +42,6 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
                                     description={description}
                                     stargazers_count={stargazers_count}
                                     html_url={html_url}
-                                    isFav={isFav}
                                     language={language}
                                     created_at={created_at}
                                 />
