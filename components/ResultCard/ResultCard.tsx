@@ -25,7 +25,9 @@ const ResultCard: React.FC<GithubResult> = ({
             </StyledResultTitle>
             <StyledResultSubdetails>{description}</StyledResultSubdetails>
             <StyledResultSubdetails>{stargazers_count}</StyledResultSubdetails>
-            <StyledResultSubdetails>{language}</StyledResultSubdetails>
+            {language && (
+                <StyledResultSubdetails>{language}</StyledResultSubdetails>
+            )}
             <StyledResultSubdetails>
                 {isFav ? 'Fav' : 'Not fav'}
             </StyledResultSubdetails>

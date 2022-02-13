@@ -5,7 +5,7 @@ interface GithubResult {
     stargazers_count: string;
     html_url: string;
     isFav: boolean;
-    language: string;
+    language: string | null;
 }
 
 export type { GithubResult };
