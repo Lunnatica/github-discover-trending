@@ -38,6 +38,7 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
                             return (
                                 <ResultCard
                                     key={id}
+                                    id={id}
                                     full_name={full_name}
                                     description={description}
                                     stargazers_count={stargazers_count}

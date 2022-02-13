@@ -11,6 +11,7 @@ import {
 } from './StyledResultCard';
 
 const ResultCard: React.FC<GithubResult> = ({
+    id,
     full_name,
     description,
     stargazers_count,
@@ -31,7 +32,7 @@ const ResultCard: React.FC<GithubResult> = ({
                 <Link href={html_url} passHref>
                     <StyledLink target="_blank">{full_name}</StyledLink>
                 </Link>
-                <StarButton isFav={isFav} />
+                <StarButton id={id} isFav={isFav} />
             </StyledResultTitle>
             <StyledResultSubdetails>{description}</StyledResultSubdetails>
             <StyledResultFooter>
