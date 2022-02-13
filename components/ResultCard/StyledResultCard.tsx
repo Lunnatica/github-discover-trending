@@ -17,7 +17,8 @@ const StyledResultSubdetails = styled.p`
     }
 `;
 
-const StyledResultTitle = styled(StyledResultSubdetails)`
+const StyledResultTitle = styled.h2`
+    font-size: x-large;
     font-weight: bold;
     display: flex;
     justify-content: space-between;

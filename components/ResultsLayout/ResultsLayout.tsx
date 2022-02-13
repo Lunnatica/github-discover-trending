@@ -5,7 +5,7 @@ import { useStarsContext } from '../../contexts/StarsContext';
 import { GithubResult } from '../../interfaces/GithubResults';
 import { ResultCard } from '../ResultCard';
 import { ResultsHeader } from '../ResultsHeader';
-import { StyledResults, StyledResultsLayout } from './StyledResultsLayout';
+import { StyledResultsLayout } from './StyledResultsLayout';
 
 interface RepoListProps {
     results: GithubResult[];
@@ -13,7 +13,7 @@ interface RepoListProps {
 
 const RepoList: React.FC<RepoListProps> = ({ results }) => {
     return (
-        <StyledResults>
+        <div>
             {results.map(
                 ({
                     id,
@@ -38,7 +38,7 @@ const RepoList: React.FC<RepoListProps> = ({ results }) => {
                     );
                 }
             )}
-        </StyledResults>
+        </div>
     );
 };
 

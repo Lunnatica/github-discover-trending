@@ -1,4 +1,4 @@
-import { StyledResultsHeader, StyledToggleButton } from './StyledResultsHeader';
+import { StyledResultsHeader, StyledToggleButton, StyledTabs } from './StyledResultsHeader';
 
 interface ResultsHeaderProps {
     changeTab: () => void;
@@ -11,18 +11,24 @@ const ResultsHeader: React.FC<ResultsHeaderProps> = ({
 }) => {
     return (
         <StyledResultsHeader>
-            <StyledToggleButton
-                onClick={() => isInStarredTab && changeTab()}
-                disabled={!isInStarredTab}
-            >
-                {isInStarredTab ? 'Show all repos' : ' All repos'}
-            </StyledToggleButton>
-            <StyledToggleButton
-                onClick={() => !isInStarredTab && changeTab()}
-                disabled={isInStarredTab}
-            >
-                {isInStarredTab ? 'Starred repos' : 'Show starred repos'}
-            </StyledToggleButton>
+            <p>
+                List of the repositories created in the last 7 days with the
+                most number of stars in Github.
+            </p>
+            <StyledTabs>
+                <StyledToggleButton
+                    onClick={() => isInStarredTab && changeTab()}
+                    disabled={!isInStarredTab}
+                >
+                    {isInStarredTab ? 'Show all repos' : ' All repos'}
+                </StyledToggleButton>
+                <StyledToggleButton
+                    onClick={() => !isInStarredTab && changeTab()}
+                    disabled={isInStarredTab}
+                >
+                    {isInStarredTab ? 'Starred repos' : 'Show starred repos'}
+                </StyledToggleButton>
+            </StyledTabs>
         </StyledResultsHeader>
     );
 };

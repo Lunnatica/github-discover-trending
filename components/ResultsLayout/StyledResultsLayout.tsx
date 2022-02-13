@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { breakpoints } from '../../styles/breakpoints';
 
 const StyledResultsLayout = styled.main`
-    display: flex;
-    justify-content: flex-start;
     background-color: lightgrey;
     padding: 0.5rem;
 
@@ -16,11 +14,4 @@ const StyledResultsLayout = styled.main`
     }
 `;
 
-const StyledResults = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-`;
-
-export { StyledResultsLayout, StyledResults };
+export { StyledResultsLayout };

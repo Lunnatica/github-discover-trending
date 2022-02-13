@@ -3,17 +3,9 @@ import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 
 const StyledResultsHeader = styled.div`
+    padding: 1rem;
     display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-
-    p {
-        margin-left: 1rem;
-    }
-    button {
-        margin-right: 2rem;
-    }
+    flex-direction: column;
 `;
 
 const StyledToggleButton = styled.button`
@@ -37,4 +29,10 @@ const StyledToggleButton = styled.button`
     }
 `;
 
-export { StyledResultsHeader, StyledToggleButton };
+const StyledTabs = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+export { StyledResultsHeader, StyledToggleButton, StyledTabs };
