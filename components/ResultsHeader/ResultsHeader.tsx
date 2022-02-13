@@ -1,4 +1,8 @@
-import { StyledResultsHeader, StyledToggleButton, StyledTabs } from './StyledResultsHeader';
+import {
+    StyledResultsHeader,
+    StyledToggleButton,
+    StyledTabs,
+} from './StyledResultsHeader';
 
 interface ResultsHeaderProps {
     changeTab: () => void;
@@ -11,10 +15,10 @@ const ResultsHeader: React.FC<ResultsHeaderProps> = ({
 }) => {
     return (
         <StyledResultsHeader>
-            <p>
+            <h2>
                 List of the repositories created in the last 7 days with the
                 most number of stars in Github.
-            </p>
+            </h2>
             <StyledTabs>
                 <StyledToggleButton
                     onClick={() => isInStarredTab && changeTab()}

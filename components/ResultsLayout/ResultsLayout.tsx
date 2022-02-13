@@ -5,7 +5,7 @@ import { useStarsContext } from '../../contexts/StarsContext';
 import { GithubResult } from '../../interfaces/GithubResults';
 import { ResultCard } from '../ResultCard';
 import { ResultsHeader } from '../ResultsHeader';
-import { StyledResultsLayout } from './StyledResultsLayout';
+import { StyledNoResults, StyledResultsLayout } from './StyledResultsLayout';
 
 interface RepoListProps {
     results: GithubResult[];
@@ -47,9 +47,10 @@ interface NoResultsProps {
 }
 
 const NoResults: React.FC<NoResultsProps> = ({ isInStarredTab }) => {
-    if (isInStarredTab) {
-        return <p>You have no starred repositories. Star some now!</p>;
-    } else return <p>Sorry, there are no results.</p>;
+    const noResultsMessage = isInStarredTab
+        ? 'You have no starred repositories. Star some now!'
+        : 'Sorry, there are no results.';
+    return <StyledNoResults>{noResultsMessage}</StyledNoResults>;
 };
 
 interface ResultsLayoutProps {

@@ -14,4 +14,9 @@ const StyledResultsLayout = styled.main`
     }
 `;
 
-export { StyledResultsLayout };
+const StyledNoResults = styled.p`
+    align-self: center;
+    font-size: x-large;
+`;
+
+export { StyledResultsLayout, StyledNoResults };
