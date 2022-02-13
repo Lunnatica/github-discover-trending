@@ -24,15 +24,24 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
             <StyledResultsLayout>
                 <StyledResults>
                     {results.map(
-                        ({ repoName, description, stars, url, isFav }) => {
+                        ({
+                            id,
+                            full_name,
+                            description,
+                            stargazers_count,
+                            url,
+                            isFav = false,
+                            language,
+                        }) => {
                             return (
                                 <ResultCard
-                                    key={repoName}
-                                    repoName={repoName}
+                                    key={id}
+                                    full_name={full_name}
                                     description={description}
-                                    stars={stars}
+                                    stargazers_count={stargazers_count}
                                     url={url}
                                     isFav={isFav}
+                                    language={language}
                                 />
                             );
                         }

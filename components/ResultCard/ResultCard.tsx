@@ -6,18 +6,20 @@ import {
 } from './StyledResultCard';
 
 const ResultCard: React.FC<GithubResult> = ({
-    repoName,
+    full_name,
     description,
-    stars,
+    stargazers_count,
     url,
-    isFav,
+    isFav = false,
+    language,
 }) => {
     return (
         <StyledResultCard>
-            <StyledResultTitle>{repoName}</StyledResultTitle>
+            <StyledResultTitle>{full_name}</StyledResultTitle>
             <StyledResultSubdetails>{description}</StyledResultSubdetails>
-            <StyledResultSubdetails>{stars}</StyledResultSubdetails>
+            <StyledResultSubdetails>{stargazers_count}</StyledResultSubdetails>
             <StyledResultSubdetails>{url}</StyledResultSubdetails>
+            <StyledResultSubdetails>{language}</StyledResultSubdetails>
             <StyledResultSubdetails>
                 {isFav ? 'Fav' : 'Not fav'}
             </StyledResultSubdetails>
