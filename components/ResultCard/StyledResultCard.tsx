@@ -4,7 +4,7 @@ import { colors } from '../../styles/colors';
 
 const StyledResultCard = styled.article`
     background-color: ${colors.background};
-    flex-basis: 80%;
+    flex-basis: 90%;
     padding: 1rem;
     border-bottom: 1px solid ${colors.border};
 `;

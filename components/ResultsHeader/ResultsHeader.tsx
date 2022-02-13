@@ -11,8 +11,17 @@ const ResultsHeader: React.FC<ResultsHeaderProps> = ({
 }) => {
     return (
         <StyledResultsHeader>
-            <StyledToggleButton onClick={changeTab}>
-                {isInStarredTab ? 'Hide' : 'Show'} starred items
+            <StyledToggleButton
+                onClick={() => isInStarredTab && changeTab()}
+                disabled={!isInStarredTab}
+            >
+                {isInStarredTab ? 'Show all repos' : ' All repos'}
+            </StyledToggleButton>
+            <StyledToggleButton
+                onClick={() => !isInStarredTab && changeTab()}
+                disabled={isInStarredTab}
+            >
+                {isInStarredTab ? 'Starred repos' : 'Show starred repos'}
             </StyledToggleButton>
         </StyledResultsHeader>
     );
