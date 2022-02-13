@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { deleteCookie, getCookieValue, setCookie } from '../utils/cookies';
 
 type StarsContextType = {
-    starredRepos: string[] | null;
+    starredRepos: string[];
     star: (id: number) => void;
     unstar: (id: number) => void;
 };

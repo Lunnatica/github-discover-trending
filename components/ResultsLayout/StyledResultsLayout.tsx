@@ -3,6 +3,7 @@ import { breakpoints } from '../../styles/breakpoints';
 
 const StyledResultsLayout = styled.main`
     display: flex;
+    justify-content: flex-start;
     background-color: lightgrey;
     padding: 0.5rem;
 

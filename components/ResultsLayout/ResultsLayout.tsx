@@ -1,7 +1,63 @@
 import Error from 'next/error';
+import { useState } from 'react';
+
+import { useStarsContext } from '../../contexts/StarsContext';
 import { GithubResult } from '../../interfaces/GithubResults';
 import { ResultCard } from '../ResultCard';
+import { ResultsHeader } from '../ResultsHeader';
 import { StyledResults, StyledResultsLayout } from './StyledResultsLayout';
+
+interface RepoListProps {
+    results: GithubResult[];
+    isInStarredTab: boolean;
+    starredRepos: string[];
+}
+
+const RepoList: React.FC<RepoListProps> = ({
+    results,
+    isInStarredTab,
+    starredRepos,
+}) => {
+    if (isInStarredTab && starredRepos.length === 0) {
+        return <p>You have no starred repositories. Star some now!</p>;
+    }
+
+    return (
+        <StyledResults>
+            {results.map(
+                ({
+                    id,
+                    full_name,
+                    description,
+                    stargazers_count,
+                    html_url,
+                    language,
+                    created_at,
+                }) => {
+                    const shouldShowResult =
+                        !isInStarredTab ||
+                        (isInStarredTab &&
+                            starredRepos?.includes(id.toString()));
+
+                    return (
+                        shouldShowResult && (
+                            <ResultCard
+                                key={id}
+                                id={id}
+                                full_name={full_name}
+                                description={description}
+                                stargazers_count={stargazers_count}
+                                html_url={html_url}
+                                language={language}
+                                created_at={created_at}
+                            />
+                        )
+                    );
+                }
+            )}
+        </StyledResults>
+    );
+};
 
 interface ResultsLayoutProps {
     errorCode?: number;
@@ -12,6 +68,12 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
     errorCode,
     results = [],
 }) => {
+    const [isInStarredTab, setIsInStarredTab] = useState(false);
+    const { starredRepos } = useStarsContext();
+    const changeTab = () => {
+        setIsInStarredTab(!isInStarredTab);
+    };
+
     if (errorCode) {
         return (
             <Error
@@ -19,40 +81,24 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
                 statusCode={errorCode}
             />
         );
-    } else
-        return results && results.length > 0 ? (
-            <StyledResultsLayout>
-                List of most starred repositories - TODO: Add header
-                <StyledResults>
-                    {results.map(
-                        ({
-                            id,
-                            full_name,
-                            description,
-                            stargazers_count,
-                            html_url,
-                            language,
-                            created_at,
-                        }) => {
-                            return (
-                                <ResultCard
-                                    key={id}
-                                    id={id}
-                                    full_name={full_name}
-                                    description={description}
-                                    stargazers_count={stargazers_count}
-                                    html_url={html_url}
-                                    language={language}
-                                    created_at={created_at}
-                                />
-                            );
-                        }
-                    )}
-                </StyledResults>
-            </StyledResultsLayout>
-        ) : (
-            <p>Sorry, there are no results.</p>
-        );
+    }
+    return (
+        <StyledResultsLayout>
+            <ResultsHeader
+                changeTab={changeTab}
+                isInStarredTab={isInStarredTab}
+            />
+            {results && results.length > 0 ? (
+                <RepoList
+                    results={results}
+                    isInStarredTab={isInStarredTab}
+                    starredRepos={starredRepos}
+                />
+            ) : (
+                <p>Sorry, there are no results.</p>
+            )}
+        </StyledResultsLayout>
+    );
 };
 
 export { ResultsLayout };
