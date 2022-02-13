@@ -33,8 +33,6 @@ main {
     flex: 1 0 auto;
     flex-direction: column;
     padding: 1rem 0.5rem;
-    justify-content: center;
-    align-items: center;
 }
 
 `;
