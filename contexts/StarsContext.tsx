@@ -25,17 +25,18 @@ const StarsContextProvider: React.FC = ({ children }) => {
 
     const star = (id: number) => {
         const updatedStarredRepos = [...starredRepos, id.toString()];
-        const currentCookieValue = getCookieValue('starredRepos');
-        const newCookieValue = currentCookieValue
-            ? currentCookieValue + '|' + id.toString()
-            : id.toString();
+        const newCookieValue = updatedStarredRepos.join('|');
         setCookie('starredRepos', newCookieValue);
         setStarredRepos(updatedStarredRepos);
     };
 
     const unstar = (id: number) => {
-        // TODO: delete from cookie
-        setStarredRepos(starredRepos?.filter((x) => x !== id.toString()));
+        const updatedStarredRepos = starredRepos.filter(
+            (x) => x !== id.toString()
+        );
+        const newCookieValue = updatedStarredRepos.join('|');
+        setCookie('starredRepos', newCookieValue);
+        setStarredRepos(updatedStarredRepos);
     };
 
     return (

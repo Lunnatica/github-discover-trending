@@ -13,4 +13,9 @@ const setCookie = (cookieName: string, cookieValue: string) => {
         cookieName + '=' + cookieValue + ';' + expires + ';Path=/;';
 };
 
-export { getCookieValue, setCookie };
+const deleteCookie = (name: string) => {
+    document.cookie =
+        name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
+
+export { getCookieValue, setCookie, deleteCookie };
