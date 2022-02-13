@@ -3,7 +3,7 @@ interface GithubResult {
     full_name: string;
     description: string;
     stargazers_count: string;
-    url: string;
+    html_url: string;
     isFav: boolean;
     language: string;
 }

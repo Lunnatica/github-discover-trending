@@ -22,6 +22,7 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
     } else
         return results && results.length > 0 ? (
             <StyledResultsLayout>
+                List of most starred repositories - TODO: Add header
                 <StyledResults>
                     {results.map(
                         ({
@@ -29,7 +30,7 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
                             full_name,
                             description,
                             stargazers_count,
-                            url,
+                            html_url,
                             isFav = false,
                             language,
                         }) => {
@@ -39,7 +40,7 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
                                     full_name={full_name}
                                     description={description}
                                     stargazers_count={stargazers_count}
-                                    url={url}
+                                    html_url={html_url}
                                     isFav={isFav}
                                     language={language}
                                 />

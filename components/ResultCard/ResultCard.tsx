@@ -12,20 +12,19 @@ const ResultCard: React.FC<GithubResult> = ({
     full_name,
     description,
     stargazers_count,
-    url,
+    html_url,
     isFav = false,
     language,
 }) => {
     return (
         <StyledResultCard>
             <StyledResultTitle>
-                <Link href={url} passHref>
+                <Link href={html_url} passHref>
                     <StyledLink target="_blank">{full_name}</StyledLink>
                 </Link>
             </StyledResultTitle>
             <StyledResultSubdetails>{description}</StyledResultSubdetails>
             <StyledResultSubdetails>{stargazers_count}</StyledResultSubdetails>
-            <StyledResultSubdetails>{url}</StyledResultSubdetails>
             <StyledResultSubdetails>{language}</StyledResultSubdetails>
             <StyledResultSubdetails>
                 {isFav ? 'Fav' : 'Not fav'}
