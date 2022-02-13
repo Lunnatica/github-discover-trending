@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
 import { colors } from '../../styles/colors';
 
 const StyledResultsHeader = styled.div`
@@ -31,8 +32,12 @@ const StyledToggleButton = styled.button`
 
 const StyledTabs = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+
+    @media ${breakpoints.tablet} {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 `;
 
 export { StyledResultsHeader, StyledToggleButton, StyledTabs };

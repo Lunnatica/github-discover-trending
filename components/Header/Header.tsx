@@ -4,7 +4,7 @@ import { StyledHeader } from './StyledHeader';
 const Header = () => (
     <StyledHeader>
         <Image src="/logo.svg" alt="" width={80} height={80} />
-        <h1>Github Trending Discovery</h1>
+        <h1>Github Trending</h1>
     </StyledHeader>
 );
 

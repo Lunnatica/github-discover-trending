@@ -17,11 +17,15 @@ const StyledResultSubdetails = styled.p`
     }
 `;
 
-const StyledResultTitle = styled.h3`
-    font-size: x-large;
-    font-weight: bold;
+const StyledResultTitle = styled.p`
     display: flex;
     justify-content: space-between;
+    font-weight: bold;
+    font-size: large;
+
+    @media ${breakpoints.mobile} {
+        font-size: x-large;
+    }
 `;
 
 const StyledResultFooter = styled.p`
@@ -35,6 +39,10 @@ const StyledLink = styled.a`
     color: ${colors.link};
     text-decoration: none;
     font-weight: 600;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-width: 75%;
 
     :hover,
     :active {

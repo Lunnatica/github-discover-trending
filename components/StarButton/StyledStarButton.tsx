@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+
+import { breakpoints } from '../../styles/breakpoints';
 import { colors } from '../../styles/colors';
 
 interface StyledStarProps {
@@ -19,10 +21,18 @@ const StyledStarButton = styled.button<StyledStarProps>`
     border: 1px solid ${colors.border};
     position: relative;
     border-radius: 0.25rem;
-    font-size: x-large;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     cursor: pointer;
+    white-space: nowrap;
+    min-height: 3rem;
+    min-width: 3rem;
+
+    font-size: large;
+
+    @media ${breakpoints.mobile} {
+        font-size: x-large;
+    }
 `;
 
 export { StyledStarButton, StyledStarIcon };

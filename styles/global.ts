@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
     width: fit-content;
-    min-width: 100%;
+    width: 100%;
     min-height: 100vh;
     box-sizing: border-box;
 }
@@ -30,9 +30,9 @@ input, select, textarea {
 
 main {
   display: flex;
-    flex: 1 0 auto;
-    flex-direction: column;
-    padding: 1rem 0.5rem;
+  flex: 1 0 auto;
+  flex-direction: column;
+  padding: 1rem 0.5rem;
 }
 
 `;
