@@ -4,17 +4,36 @@ import Image from 'next/image';
 
 import { Header } from '../components/Header';
 
+const MetaTags = () => {
+    const metaUrl = 'http://localhost:3000/';
+    const metaDescription =
+        'Displays a list of the github repositories created in the last 7 days with the most number of stars.';
+    const metaTitle = 'Github Trending Discovery';
+    const metaImage = 'http://localhost:3000/logo.svg';
+
+    return (
+        <Head>
+            <link rel="canonical" href={metaUrl} />
+            <link rel="icon" href="/favicon.ico" />
+            <title>{metaTitle}</title>
+            <meta name="Description" content={metaDescription} />
+            <meta property="og:title" content={metaTitle} />
+            <meta property="og:description" content={metaDescription} />
+            <meta property="og:type" content="website" />
+            <meta property="og:image" content={metaImage} />
+            <meta property="og:url" content={metaUrl} />
+            <meta name="twitter:title" content={metaTitle} />
+            <meta name="twitter:description" content={metaDescription} />
+            <meta name="twitter:image" content={metaImage} />
+            <meta name="twitter:card" content="summary" />
+        </Head>
+    );
+};
+
 const Home: NextPage = () => {
     return (
         <>
-            <Head>
-                <title>Github trending discovery</title>
-                <meta
-                    name="description"
-                    content="Application for discovering trending repositories on GitHub."
-                />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <MetaTags />
             <Header />
         </>
     );
