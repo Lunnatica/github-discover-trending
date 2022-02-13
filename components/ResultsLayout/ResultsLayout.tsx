@@ -33,6 +33,7 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
                             html_url,
                             isFav = false,
                             language,
+                            created_at,
                         }) => {
                             return (
                                 <ResultCard
@@ -43,6 +44,7 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
                                     html_url={html_url}
                                     isFav={isFav}
                                     language={language}
+                                    created_at={created_at}
                                 />
                             );
                         }

@@ -17,7 +17,14 @@ const ResultCard: React.FC<GithubResult> = ({
     html_url,
     isFav = false,
     language,
+    created_at,
 }) => {
+    const formattedDate = new Date(created_at).toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    });
+
     return (
         <StyledResultCard>
             <StyledResultTitle>
@@ -29,6 +36,7 @@ const ResultCard: React.FC<GithubResult> = ({
             <StyledResultSubdetails>{description}</StyledResultSubdetails>
             <StyledResultFooter>
                 <span>{language && ` ${language}`}</span>
+                <span>Created: {formattedDate}</span>
                 <span>{`${stargazers_count}⭐️`}</span>
             </StyledResultFooter>
         </StyledResultCard>

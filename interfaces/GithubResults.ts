@@ -6,6 +6,7 @@ interface GithubResult {
     html_url: string;
     isFav: boolean;
     language: string | null;
+    created_at: string;
 }
 
 export type { GithubResult };
