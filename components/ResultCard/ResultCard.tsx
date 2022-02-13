@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import { GithubResult } from '../../interfaces/GithubResults';
+import { StarButton } from '../StarButton';
 import {
     StyledLink,
     StyledResultCard,
@@ -22,6 +23,7 @@ const ResultCard: React.FC<GithubResult> = ({
                 <Link href={html_url} passHref>
                     <StyledLink target="_blank">{full_name}</StyledLink>
                 </Link>
+                <StarButton isFav={isFav} />
             </StyledResultTitle>
             <StyledResultSubdetails>{description}</StyledResultSubdetails>
             <StyledResultSubdetails>{stargazers_count}</StyledResultSubdetails>

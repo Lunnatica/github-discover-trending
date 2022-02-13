@@ -18,6 +18,8 @@ const StyledResultSubdetails = styled.p`
 const StyledResultTitle = styled(StyledResultSubdetails)`
     font-weight: bold;
     font-size: x-large;
+    display: flex;
+    justify-content: space-between;
 `;
 
 const StyledLink = styled.a`
