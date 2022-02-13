@@ -21,8 +21,10 @@ const Home = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     try {
-        const url =
-            'https://api.github.com/search/repositories?q=created:%3E2017-01-10&sort=stars&order=desc';
+        const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+            .toISOString()
+            .split('T')[0];
+        const url = `https://api.github.com/search/repositories?q=created:>${sevenDaysAgo}&sort=stars&order=desc`;
         const response = await fetch(url, {
             method: 'GET',
         });
