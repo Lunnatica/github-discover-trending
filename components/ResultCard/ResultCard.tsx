@@ -5,6 +5,7 @@ import { StarButton } from '../StarButton';
 import {
     StyledLink,
     StyledResultCard,
+    StyledResultFooter,
     StyledResultSubdetails,
     StyledResultTitle,
 } from './StyledResultCard';
@@ -26,13 +27,10 @@ const ResultCard: React.FC<GithubResult> = ({
                 <StarButton isFav={isFav} />
             </StyledResultTitle>
             <StyledResultSubdetails>{description}</StyledResultSubdetails>
-            <StyledResultSubdetails>{stargazers_count}</StyledResultSubdetails>
-            {language && (
-                <StyledResultSubdetails>{language}</StyledResultSubdetails>
-            )}
-            <StyledResultSubdetails>
-                {isFav ? 'Fav' : 'Not fav'}
-            </StyledResultSubdetails>
+            <StyledResultFooter>
+                <span>{language && ` ${language}`}</span>
+                <span>{`${stargazers_count}⭐️`}</span>
+            </StyledResultFooter>
         </StyledResultCard>
     );
 };

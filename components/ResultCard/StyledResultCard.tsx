@@ -10,14 +10,22 @@ const StyledResultCard = styled.article`
 `;
 
 const StyledResultSubdetails = styled.p`
+    font-size: large;
+
     @media ${breakpoints.tablet} {
-        font-size: large;
+        font-size: x-large;
     }
 `;
 
 const StyledResultTitle = styled(StyledResultSubdetails)`
     font-weight: bold;
-    font-size: x-large;
+    display: flex;
+    justify-content: space-between;
+`;
+
+const StyledResultFooter = styled.p`
+    font-size: large;
+    color: #550376;
     display: flex;
     justify-content: space-between;
 `;
@@ -39,4 +47,5 @@ export {
     StyledResultSubdetails,
     StyledResultTitle,
     StyledLink,
+    StyledResultFooter,
 };
