@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import { Header } from '../components/Header';
 import { ResultsLayout } from '../components/ResultsLayout';
+import { GithubResult } from '../interfaces/GithubResults';
 
 const Home = ({
     errorCode,
@@ -14,7 +15,7 @@ const Home = ({
                 <title>Github Trending Discovery</title>
             </Head>
             <Header />
-            <ResultsLayout errorCode={errorCode} results={results?.items} />
+            <ResultsLayout errorCode={errorCode} results={results} />
         </>
     );
 };
@@ -33,13 +34,33 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         if (errorCode && context.res) context.res.statusCode = errorCode;
         const results = await response.json();
 
+        const processedResults = results?.items?.map(
+            ({
+                id,
+                full_name,
+                description,
+                stargazers_count,
+                html_url,
+                language,
+                created_at,
+            }: GithubResult) => ({
+                id,
+                full_name,
+                description,
+                stargazers_count,
+                html_url,
+                language,
+                created_at,
+            })
+        );
+
         if (errorCode) {
             return {
-                props: { errorCode, results },
+                props: { errorCode, results: processedResults },
             };
         } else {
             return {
-                props: { results },
+                props: { results: processedResults },
             };
         }
     } catch (error: any) {
