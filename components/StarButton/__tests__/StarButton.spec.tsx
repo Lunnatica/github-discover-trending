@@ -1,13 +1,29 @@
-import { render, screen } from '@testing-library/react';
-import { StarButton } from '../StarButton';
 import '@testing-library/jest-dom/extend-expect';
 
+import { render, screen } from '@testing-library/react';
+
+import { useStarsContext } from '../../../contexts/StarsContext';
+import { StarButton } from '../StarButton';
+
+jest.mock('../../../contexts/StarsContext');
+
 describe('StarButton', () => {
+    const starProductMock = jest.fn();
+    const unstarProductMock = jest.fn();
+
+    beforeEach(() => {
+        (useStarsContext as jest.Mock).mockImplementation(() => ({
+            starredRepos: ['2'],
+            starProduct: starProductMock,
+            unstarProduct: unstarProductMock,
+        }));
+    });
+
     afterEach(jest.clearAllMocks);
 
     describe('given a non-Starred repo', () => {
         beforeEach(() => {
-            const instance = <StarButton id="1" />;
+            const instance = <StarButton id={1} />;
             render(instance);
         });
 
@@ -25,7 +41,7 @@ describe('StarButton', () => {
 
     describe('given a Starred repo', () => {
         beforeEach(() => {
-            const instance = <StarButton id="2" />;
+            const instance = <StarButton id={2} />;
             render(instance);
         });
 
