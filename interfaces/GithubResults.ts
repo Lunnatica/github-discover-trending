@@ -1,5 +1,5 @@
 interface GithubResult {
-    id?: string;
+    id: string;
     full_name: string;
     description: string;
     stargazers_count: string;

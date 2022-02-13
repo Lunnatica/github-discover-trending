@@ -4,28 +4,34 @@ import { ResultsLayout } from '../ResultsLayout';
 describe('<ResultsLayout />', () => {
     const results = [
         {
+            id: '1',
             full_name: 'Name',
             description: 'description',
             stargazers_count: 'stargazers_count',
             html_url: 'html_url',
             isFav: false,
             language: 'Javascript',
+            created_at: 'created_at',
         },
         {
+            id: '2',
             full_name: 'Name2',
             description: 'description2',
             stargazers_count: 'stargazers_count2',
             html_url: 'html_url2',
             isFav: true,
             language: 'Python',
+            created_at: 'created_at',
         },
         {
+            id: '3',
             full_name: 'Name3',
             description: 'description3',
             stargazers_count: 'stargazers_count3',
             html_url: 'html_url3',
             isFav: false,
             language: 'Javascript',
+            created_at: 'created_at',
         },
     ];
 
