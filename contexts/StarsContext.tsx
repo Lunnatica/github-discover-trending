@@ -3,8 +3,8 @@ import { getCookieValue, setCookie } from '../utils/cookies';
 
 type StarsContextType = {
     starredRepos: string[] | null;
-    star: (id: string) => void;
-    unstar: (id: string) => void;
+    star: (id: number) => void;
+    unstar: (id: number) => void;
 };
 
 const defaultContextValues = {
@@ -23,19 +23,19 @@ const StarsContextProvider: React.FC = ({ children }) => {
         setStarredRepos(getCookieValue('starredRepos')?.split('|') ?? []);
     }, []);
 
-    const star = (id: string) => {
-        const updatedStarredRepos = [...starredRepos, id];
+    const star = (id: number) => {
+        const updatedStarredRepos = [...starredRepos, id.toString()];
         const currentCookieValue = getCookieValue('starredRepos');
         const newCookieValue = currentCookieValue
-            ? currentCookieValue + '|' + id
-            : id;
+            ? currentCookieValue + '|' + id.toString()
+            : id.toString();
         setCookie('starredRepos', newCookieValue);
         setStarredRepos(updatedStarredRepos);
     };
 
-    const unstar = (id: string) => {
+    const unstar = (id: number) => {
         // TODO: delete from cookie
-        setStarredRepos(starredRepos?.filter((x) => x !== id));
+        setStarredRepos(starredRepos?.filter((x) => x !== id.toString()));
     };
 
     return (

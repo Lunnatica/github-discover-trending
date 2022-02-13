@@ -2,12 +2,12 @@ import { useStarsContext } from '../../contexts/StarsContext';
 import { StyledStarButton, StyledStarIcon } from './StyledStarButton';
 
 interface StarButtonProps {
-    id: string;
+    id: number;
 }
 
 const StarButton: React.FC<StarButtonProps> = ({ id }) => {
     const { starredRepos, star, unstar } = useStarsContext();
-    const isStarred = starredRepos?.includes(id) ?? false;
+    const isStarred = starredRepos?.includes(id.toString()) ?? false;
 
     const starRepo = () => {
         star(id);
