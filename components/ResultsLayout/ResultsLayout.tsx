@@ -10,15 +10,15 @@ import { StyledResults, StyledResultsLayout } from './StyledResultsLayout';
 interface RepoListProps {
     results: GithubResult[];
     isInStarredTab: boolean;
-    starredRepos: string[];
+    starredReposIds: string[];
 }
 
 const RepoList: React.FC<RepoListProps> = ({
     results,
     isInStarredTab,
-    starredRepos,
+    starredReposIds,
 }) => {
-    if (isInStarredTab && starredRepos.length === 0) {
+    if (isInStarredTab && starredReposIds.length === 0) {
         return <p>You have no starred repositories. Star some now!</p>;
     }
 
@@ -37,7 +37,7 @@ const RepoList: React.FC<RepoListProps> = ({
                     const shouldShowResult =
                         !isInStarredTab ||
                         (isInStarredTab &&
-                            starredRepos?.includes(id.toString()));
+                            starredReposIds?.includes(id.toString()));
 
                     return (
                         shouldShowResult && (
@@ -69,7 +69,7 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
     results = [],
 }) => {
     const [isInStarredTab, setIsInStarredTab] = useState(false);
-    const { starredRepos } = useStarsContext();
+    const { starredReposIds } = useStarsContext();
     const changeTab = () => {
         setIsInStarredTab(!isInStarredTab);
     };
@@ -92,7 +92,7 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
                 <RepoList
                     results={results}
                     isInStarredTab={isInStarredTab}
-                    starredRepos={starredRepos}
+                    starredReposIds={starredReposIds}
                 />
             ) : (
                 <p>Sorry, there are no results.</p>

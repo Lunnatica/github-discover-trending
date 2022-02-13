@@ -13,7 +13,7 @@ describe('StarButton', () => {
 
     beforeEach(() => {
         (useStarsContext as jest.Mock).mockImplementation(() => ({
-            starredRepos: ['2'],
+            starredReposIds: ['2'],
             starProduct: starProductMock,
             unstarProduct: unstarProductMock,
         }));

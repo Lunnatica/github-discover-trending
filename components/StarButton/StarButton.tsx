@@ -6,8 +6,8 @@ interface StarButtonProps {
 }
 
 const StarButton: React.FC<StarButtonProps> = ({ id }) => {
-    const { starredRepos, star, unstar } = useStarsContext();
-    const isStarred = starredRepos?.includes(id.toString()) ?? false;
+    const { starredReposIds, star, unstar } = useStarsContext();
+    const isStarred = starredReposIds?.includes(id.toString()) ?? false;
 
     const starRepo = () => {
         star(id);

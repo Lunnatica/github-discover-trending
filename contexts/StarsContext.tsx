@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { deleteCookie, getCookieValue, setCookie } from '../utils/cookies';
 
 type StarsContextType = {
-    starredRepos: string[];
+    starredReposIds: string[];
     star: (id: number) => void;
     unstar: (id: number) => void;
 };
 
 const defaultContextValues = {
-    starredRepos: [],
+    starredReposIds: [],
     star: () => {},
     unstar: () => {},
 };
@@ -16,31 +16,31 @@ const defaultContextValues = {
 const StarsContext =
     React.createContext<StarsContextType>(defaultContextValues);
 
-const COOKIE_NAME = 'starredRepos';
+const COOKIE_NAME = 'starredReposIds';
 
 const StarsContextProvider: React.FC = ({ children }) => {
-    const [starredRepos, setStarredRepos] = useState<string[]>([]);
+    const [starredReposIds, setStarredReposIds] = useState<string[]>([]);
 
     useEffect(() => {
-        setStarredRepos(getCookieValue(COOKIE_NAME)?.split('|') ?? []);
+        setStarredReposIds(getCookieValue(COOKIE_NAME)?.split('|') ?? []);
     }, []);
 
     const star = (id: number) => {
-        const updatedStarredRepos = [...starredRepos, id.toString()];
-        const newCookieValue = updatedStarredRepos.join('|');
+        const updatedStarredReposIds = [...starredReposIds, id.toString()];
+        const newCookieValue = updatedStarredReposIds.join('|');
         setCookie(COOKIE_NAME, newCookieValue);
-        setStarredRepos(updatedStarredRepos);
+        setStarredReposIds(updatedStarredReposIds);
     };
 
     const unstar = (id: number) => {
-        const updatedStarredRepos = starredRepos.filter(
+        const updatedStarredReposIds = starredReposIds.filter(
             (x) => x !== id.toString()
         );
-        setStarredRepos(updatedStarredRepos);
-        if (updatedStarredRepos.length === 0) {
+        setStarredReposIds(updatedStarredReposIds);
+        if (updatedStarredReposIds.length === 0) {
             deleteCookie(COOKIE_NAME);
         } else {
-            const newCookieValue = updatedStarredRepos.join('|');
+            const newCookieValue = updatedStarredReposIds.join('|');
             setCookie(COOKIE_NAME, newCookieValue);
         }
     };
@@ -48,7 +48,7 @@ const StarsContextProvider: React.FC = ({ children }) => {
     return (
         <StarsContext.Provider
             value={{
-                starredRepos,
+                starredReposIds,
                 star,
                 unstar,
             }}
