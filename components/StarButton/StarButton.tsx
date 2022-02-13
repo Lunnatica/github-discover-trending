@@ -26,8 +26,6 @@ const StarButton: React.FC<StarButtonProps> = ({ id }) => {
             onClick={onClickHandler}
             data-testid={isStarred ? 'Starred' : 'default'}
         >
-            {id}
-            {/* TODO: delete id, just for testing */}
             <StyledStarIcon hasBeenStarred={isStarred}>☆</StyledStarIcon>
             {isStarred ? ' Starred' : ' Star'}
         </StyledStarButton>
