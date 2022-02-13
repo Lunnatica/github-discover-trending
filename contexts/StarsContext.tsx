@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { getCookieValue, setCookie } from '../utils/cookies';
+import { deleteCookie, getCookieValue, setCookie } from '../utils/cookies';
 
 type StarsContextType = {
     starredRepos: string[] | null;
@@ -16,17 +16,19 @@ const defaultContextValues = {
 const StarsContext =
     React.createContext<StarsContextType>(defaultContextValues);
 
+const COOKIE_NAME = 'starredRepos';
+
 const StarsContextProvider: React.FC = ({ children }) => {
     const [starredRepos, setStarredRepos] = useState<string[]>([]);
 
     useEffect(() => {
-        setStarredRepos(getCookieValue('starredRepos')?.split('|') ?? []);
+        setStarredRepos(getCookieValue(COOKIE_NAME)?.split('|') ?? []);
     }, []);
 
     const star = (id: number) => {
         const updatedStarredRepos = [...starredRepos, id.toString()];
         const newCookieValue = updatedStarredRepos.join('|');
-        setCookie('starredRepos', newCookieValue);
+        setCookie(COOKIE_NAME, newCookieValue);
         setStarredRepos(updatedStarredRepos);
     };
 
@@ -34,9 +36,13 @@ const StarsContextProvider: React.FC = ({ children }) => {
         const updatedStarredRepos = starredRepos.filter(
             (x) => x !== id.toString()
         );
-        const newCookieValue = updatedStarredRepos.join('|');
-        setCookie('starredRepos', newCookieValue);
         setStarredRepos(updatedStarredRepos);
+        if (updatedStarredRepos.length === 0) {
+            deleteCookie(COOKIE_NAME);
+        } else {
+            const newCookieValue = updatedStarredRepos.join('|');
+            setCookie(COOKIE_NAME, newCookieValue);
+        }
     };
 
     return (
