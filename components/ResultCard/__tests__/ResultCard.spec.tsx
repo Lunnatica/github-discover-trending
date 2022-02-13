@@ -3,24 +3,25 @@ import { ResultCard } from '../ResultCard';
 
 describe('<ResultCard />', () => {
     const result = {
-        repoName: 'Name',
+        full_name: 'Name',
         description: 'description',
-        stars: 'stars',
-        url: 'url',
+        stargazers_count: 'stars',
+        html_url: 'url',
         isFav: false,
+        language: 'Javascript',
     };
 
     const favResult = { ...result, isFav: true };
 
     it('should render nonFav results', () => {
         render(<ResultCard {...result} />);
-        expect(screen.getByText(result.repoName));
+        expect(screen.getByText(result.full_name));
         expect(screen.getByText('Not fav'));
     });
 
     it('should Fav when passed a fav result', () => {
         render(<ResultCard {...favResult} />);
-        expect(screen.getByText(result.repoName));
+        expect(screen.getByText(result.full_name));
         expect(screen.getByText('Fav'));
     });
 });
