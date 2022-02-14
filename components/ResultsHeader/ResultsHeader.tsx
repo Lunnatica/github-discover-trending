@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { LanguageSelector } from '../LanguageSelector';
 
 import {
     StyledResultsHeader,
@@ -21,24 +22,6 @@ const ResultsHeader: React.FC<ResultsHeaderProps> = ({
     selectedLanguage,
     setSelectedLanguage,
 }) => {
-    const LanguageSelector: React.FC = () => {
-        return (
-            <select
-                value={selectedLanguage}
-                onChange={(e) => setSelectedLanguage(e.target.value)}
-            >
-                <option value="" disabled hidden>
-                    Filter by language
-                </option>
-                {languages.map((language) => (
-                    <option key={language} value={language}>
-                        {language}
-                    </option>
-                ))}
-            </select>
-        );
-    };
-
     return (
         <StyledResultsHeader>
             <h2>
@@ -59,7 +42,11 @@ const ResultsHeader: React.FC<ResultsHeaderProps> = ({
                     {isInStarredTab ? 'Starred repos' : 'Show starred repos'}
                 </StyledToggleButton>
             </StyledTabs>
-            {languages.length ? <LanguageSelector /> : null}
+            <LanguageSelector
+                setSelectedLanguage={setSelectedLanguage}
+                selectedLanguage={selectedLanguage}
+                languages={languages}
+            />
         </StyledResultsHeader>
     );
 };

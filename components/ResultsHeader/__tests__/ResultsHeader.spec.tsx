@@ -1,6 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { ResultsHeader } from '../ResultsHeader';
 
+jest.mock('../../LanguageSelector', () => ({
+    LanguageSelector: () => {
+        return <div data-testid="LanguageSelector">LanguageSelector</div>;
+    },
+}));
+
 describe('<ResultsHeader />', () => {
     const changeTab = jest.fn();
     const selectedLanguage = '';
@@ -22,7 +28,7 @@ describe('<ResultsHeader />', () => {
     });
 
     describe('when no languages are passed', () => {
-        it('should not show a select', () => {
+        it('should not show a LanguageSelector', () => {
             render(
                 <ResultsHeader
                     isInStarredTab={false}
@@ -32,12 +38,12 @@ describe('<ResultsHeader />', () => {
                     languages={[]}
                 />
             );
-            expect(screen.queryByText('Filter by language')).toBeNull();
+            expect(screen.queryByTestId('LanguageSelector')).toBeNull();
         });
     });
 
     describe('when an array of languages is passed', () => {
-        it('should show all the languages as options', () => {
+        it('should show a LanguageSelector', () => {
             render(
                 <ResultsHeader
                     isInStarredTab={false}
@@ -47,27 +53,7 @@ describe('<ResultsHeader />', () => {
                     languages={languages}
                 />
             );
-            expect(screen.getByText('Filter by language'));
-            languages.forEach((language) => {
-                screen.getByRole('option', { name: language });
-            });
-        });
-
-        it('should call setSelected language with the selected language', () => {
-            render(
-                <ResultsHeader
-                    isInStarredTab={false}
-                    changeTab={changeTab}
-                    setSelectedLanguage={setSelectedLanguage}
-                    selectedLanguage={selectedLanguage}
-                    languages={languages}
-                />
-            );
-            fireEvent.change(screen.getByRole('combobox'), {
-                target: { value: languages[0] },
-            });
-            expect(setSelectedLanguage).toHaveBeenCalledTimes(1);
-            expect(setSelectedLanguage).toHaveBeenCalledWith(languages[0]);
+            expect(screen.getByTestId('LanguageSelector'));
         });
     });
 
