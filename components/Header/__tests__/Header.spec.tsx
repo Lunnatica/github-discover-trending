@@ -4,6 +4,6 @@ import { Header } from '../Header';
 describe('Header', () => {
     it('renders', () => {
         render(<Header />);
-        expect(screen.getByText('Github Trending Discovery'));
+        expect(screen.getByText('Github Trending'));
     });
 });
