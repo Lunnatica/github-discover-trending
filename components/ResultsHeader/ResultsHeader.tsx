@@ -41,12 +41,12 @@ const ResultsHeader: React.FC<ResultsHeaderProps> = ({
                 >
                     {isInStarredTab ? 'Starred repos' : 'Show starred repos'}
                 </StyledToggleButton>
+                <LanguageSelector
+                    setSelectedLanguage={setSelectedLanguage}
+                    selectedLanguage={selectedLanguage}
+                    languages={languages}
+                />
             </StyledTabs>
-            <LanguageSelector
-                setSelectedLanguage={setSelectedLanguage}
-                selectedLanguage={selectedLanguage}
-                languages={languages}
-            />
         </StyledResultsHeader>
     );
 };

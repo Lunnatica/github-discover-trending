@@ -16,9 +16,9 @@ const StyledToggleButton = styled.button`
     color: white;
     padding: 1em 2em;
     border-radius: 0.5rem;
-    font-size: 1rem;
     margin: 0.4rem 0.2rem;
     background-color: ${colors.activeTabBackground};
+    font-size: large;
 
     &:hover {
         background-color: ${colors.hoverTabBackground};

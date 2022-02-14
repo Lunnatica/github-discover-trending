@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
+import { StyledLanguageSelector } from './StyledLanguageSelector';
+
 interface LanguageSelectorProps {
     languages: string[];
     selectedLanguage: string;
@@ -12,7 +14,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     setSelectedLanguage,
 }) => {
     return languages.length ? (
-        <select
+        <StyledLanguageSelector
             value={selectedLanguage}
             onChange={(e) => setSelectedLanguage(e.target.value)}
         >
@@ -24,7 +26,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
                     {language}
                 </option>
             ))}
-        </select>
+        </StyledLanguageSelector>
     ) : null;
 };
 
