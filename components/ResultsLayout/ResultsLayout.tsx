@@ -1,5 +1,5 @@
 import Error from 'next/error';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useStarsContext } from '../../contexts/StarsContext';
 import { GithubResult } from '../../interfaces/GithubResults';
@@ -63,14 +63,34 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
     results = [],
 }) => {
     const [isInStarredTab, setIsInStarredTab] = useState(false);
+    const [selectedLanguage, setSelectedLanguage] = useState('');
     const { starredReposIds } = useStarsContext();
     const changeTab = () => {
         setIsInStarredTab(!isInStarredTab);
+        setSelectedLanguage('');
     };
     const starredRepos = results.filter((x) =>
         starredReposIds.includes(x.id.toString())
     );
     const repoList = isInStarredTab ? starredRepos : results;
+    const reposWithLanguage: GithubResult[] = repoList.filter(
+        (repo) => repo.language !== null
+    );
+    const allLanguages: string[] = reposWithLanguage.map(
+        (repo) => repo.language as string
+    );
+    const uniqueLanguages = new Set(allLanguages);
+    const languages = Array.from(uniqueLanguages).sort();
+    const reposFilteredByLang = selectedLanguage
+        ? repoList.filter((repo) => repo.language === selectedLanguage)
+        : repoList;
+
+    useEffect(() => {
+        // If user unstars all the repos with a language, we reset the language filter
+        if (!languages.includes(selectedLanguage)) {
+            setSelectedLanguage('');
+        }
+    }, [languages, selectedLanguage, repoList]);
 
     if (errorCode) {
         return (
@@ -80,14 +100,18 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
             />
         );
     }
+
     return (
         <StyledResultsLayout>
             <ResultsHeader
                 changeTab={changeTab}
                 isInStarredTab={isInStarredTab}
+                languages={languages}
+                selectedLanguage={selectedLanguage}
+                setSelectedLanguage={setSelectedLanguage}
             />
-            {repoList && repoList.length > 0 ? (
-                <RepoList results={repoList} />
+            {reposFilteredByLang && reposFilteredByLang.length > 0 ? (
+                <RepoList results={reposFilteredByLang} />
             ) : (
                 <NoResults isInStarredTab={isInStarredTab} />
             )}
