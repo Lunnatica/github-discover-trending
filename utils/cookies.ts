@@ -7,7 +7,7 @@ const getCookieValue = (cookieName: string) => {
 
 const setCookie = (cookieName: string, cookieValue: string) => {
     var d = new Date();
-    d.setTime(d.getTime() + 15 * 60 * 1000);
+    d.setTime(d.getTime() + 15 * 60 * 1000); // 15 minutes
     var expires = 'Expires=' + d.toUTCString();
     document.cookie =
         cookieName + '=' + cookieValue + ';' + expires + ';Path=/;';

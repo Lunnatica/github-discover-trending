@@ -1,4 +1,3 @@
-import Error from 'next/error';
 import { useEffect, useState } from 'react';
 
 import { useStarsContext } from '../../contexts/StarsContext';
@@ -13,7 +12,7 @@ interface RepoListProps {
 
 const RepoList: React.FC<RepoListProps> = ({ results }) => {
     return (
-        <div>
+        <>
             {results.map(
                 ({
                     id,
@@ -23,22 +22,20 @@ const RepoList: React.FC<RepoListProps> = ({ results }) => {
                     html_url,
                     language,
                     created_at,
-                }) => {
-                    return (
-                        <ResultCard
-                            key={id}
-                            id={id}
-                            full_name={full_name}
-                            description={description}
-                            stargazers_count={stargazers_count}
-                            html_url={html_url}
-                            language={language}
-                            created_at={created_at}
-                        />
-                    );
-                }
+                }) => (
+                    <ResultCard
+                        key={id}
+                        id={id}
+                        full_name={full_name}
+                        description={description}
+                        stargazers_count={stargazers_count}
+                        html_url={html_url}
+                        language={language}
+                        created_at={created_at}
+                    />
+                )
             )}
-        </div>
+        </>
     );
 };
 
@@ -53,18 +50,25 @@ const NoResults: React.FC<NoResultsProps> = ({ isInStarredTab }) => {
     return <StyledNoResults>{noResultsMessage}</StyledNoResults>;
 };
 
+const getLanguages = (repoList: GithubResult[]) => {
+    const allLanguages: string[] = repoList
+        .filter((repo) => repo.language !== null)
+        .map((repo) => repo.language as string);
+
+    const uniqueLanguages = new Set(allLanguages);
+    const languages = Array.from(uniqueLanguages).sort();
+    return languages;
+};
+
 interface ResultsLayoutProps {
-    errorCode?: number;
     results?: GithubResult[];
 }
 
-const ResultsLayout: React.FC<ResultsLayoutProps> = ({
-    errorCode,
-    results = [],
-}) => {
+const ResultsLayout: React.FC<ResultsLayoutProps> = ({ results = [] }) => {
     const [isInStarredTab, setIsInStarredTab] = useState(false);
     const [selectedLanguage, setSelectedLanguage] = useState('');
     const { starredReposIds } = useStarsContext();
+
     const changeTab = () => {
         setIsInStarredTab(!isInStarredTab);
         setSelectedLanguage('');
@@ -73,14 +77,8 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
         starredReposIds.includes(x.id.toString())
     );
     const repoList = isInStarredTab ? starredRepos : results;
-    const reposWithLanguage: GithubResult[] = repoList.filter(
-        (repo) => repo.language !== null
-    );
-    const allLanguages: string[] = reposWithLanguage.map(
-        (repo) => repo.language as string
-    );
-    const uniqueLanguages = new Set(allLanguages);
-    const languages = Array.from(uniqueLanguages).sort();
+
+    const languages = getLanguages(repoList);
     const reposFilteredByLang = selectedLanguage
         ? repoList.filter((repo) => repo.language === selectedLanguage)
         : repoList;
@@ -91,15 +89,6 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({
             setSelectedLanguage('');
         }
     }, [languages, selectedLanguage, repoList]);
-
-    if (errorCode) {
-        return (
-            <Error
-                title="There was a problem when retrieving results from Github. Please try again later."
-                statusCode={errorCode}
-            />
-        );
-    }
 
     return (
         <StyledResultsLayout>

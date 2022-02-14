@@ -4,7 +4,7 @@ import { ResultsLayout } from '../ResultsLayout';
 describe('<ResultsLayout />', () => {
     const results = [
         {
-            id: '1',
+            id: 1,
             full_name: 'Name',
             description: 'description',
             stargazers_count: 'stargazers_count',
@@ -13,7 +13,7 @@ describe('<ResultsLayout />', () => {
             created_at: 'created_at',
         },
         {
-            id: '2',
+            id: 2,
             full_name: 'Name2',
             description: 'description2',
             stargazers_count: 'stargazers_count2',
@@ -22,7 +22,7 @@ describe('<ResultsLayout />', () => {
             created_at: 'created_at',
         },
         {
-            id: '3',
+            id: 3,
             full_name: 'Name3',
             description: 'description3',
             stargazers_count: 'stargazers_count3',
@@ -31,15 +31,6 @@ describe('<ResultsLayout />', () => {
             created_at: 'created_at',
         },
     ];
-
-    it('should show an error message if there is an error', () => {
-        render(<ResultsLayout errorCode={404} results={results} />);
-        expect(
-            screen.getByText(
-                /There was a problem when retrieving results from Github. Please try again later./
-            )
-        );
-    });
 
     it('should show a no results message when results is an empty array', () => {
         render(<ResultsLayout results={[]} />);

@@ -9,13 +9,8 @@ const StarButton: React.FC<StarButtonProps> = ({ id }) => {
     const { starredReposIds, star, unstar } = useStarsContext();
     const isStarred = starredReposIds?.includes(id.toString()) ?? false;
 
-    const starRepo = () => {
-        star(id);
-    };
-
-    const unstarRepo = () => {
-        unstar(id);
-    };
+    const starRepo = () => star(id);
+    const unstarRepo = () => unstar(id);
 
     const onClickHandler = isStarred ? unstarRepo : starRepo;
 

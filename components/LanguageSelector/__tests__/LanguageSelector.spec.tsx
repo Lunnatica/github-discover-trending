@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import { LanguageSelector } from '../LanguageSelector';
 
-describe('<LanguageSelector', () => {
+describe('<LanguageSelector />', () => {
     const selectedLanguage = '';
     const setSelectedLanguage = jest.fn();
     const languages = ['Javascript', 'Python'];
@@ -21,7 +21,7 @@ describe('<LanguageSelector', () => {
         });
     });
 
-    it('should call setSelected language with the selected language', () => {
+    it('should call setSelectedLanguage with the selected language', () => {
         render(
             <LanguageSelector
                 setSelectedLanguage={setSelectedLanguage}

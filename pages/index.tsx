@@ -1,4 +1,5 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import Error from 'next/error';
 import Head from 'next/head';
 
 import { Header } from '../components/Header';
@@ -9,19 +10,24 @@ import { GithubResult } from '../interfaces/GithubResults';
 const Home = ({
     errorCode,
     results,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    return (
-        <>
-            <Head>
-                <title>Github Trending Discovery</title>
-            </Head>
-            <StarsContextProvider>
-                <Header />
-                <ResultsLayout errorCode={errorCode} results={results} />
-            </StarsContextProvider>
-        </>
-    );
-};
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => (
+    <>
+        <Head>
+            <title>Github Trending Discovery</title>
+        </Head>
+        <StarsContextProvider>
+            <Header />
+            {errorCode ? (
+                <Error
+                    title="There was a problem when retrieving results from Github. Please try again later."
+                    statusCode={errorCode}
+                />
+            ) : (
+                <ResultsLayout results={results} />
+            )}
+        </StarsContextProvider>
+    </>
+);
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     try {
@@ -29,9 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             .toISOString()
             .split('T')[0];
         const url = `https://api.github.com/search/repositories?q=created:>${sevenDaysAgo}&sort=stars&order=desc`;
-        const response = await fetch(url, {
-            method: 'GET',
-        });
+        const response = await fetch(url);
 
         const errorCode = !response.ok ? response.status : null;
         if (errorCode && context.res) context.res.statusCode = errorCode;

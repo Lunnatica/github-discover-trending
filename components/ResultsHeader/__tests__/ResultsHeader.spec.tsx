@@ -13,7 +13,7 @@ describe('<ResultsHeader />', () => {
     const setSelectedLanguage = jest.fn();
     const languages = ['Javascript', 'Python'];
 
-    it('should execute the changeTab function when the button is clicked', () => {
+    it('should change tabs when the active button is clicked', () => {
         render(
             <ResultsHeader
                 isInStarredTab={false}
@@ -57,7 +57,7 @@ describe('<ResultsHeader />', () => {
         });
     });
 
-    describe('when isInStarredTab is true', () => {
+    describe('when the user is in the starred repos tab', () => {
         it('should render the correct buttons text', () => {
             render(
                 <ResultsHeader
@@ -73,7 +73,7 @@ describe('<ResultsHeader />', () => {
         });
     });
 
-    describe('when isInStarredTab is false', () => {
+    describe('when the user is in the All repos tab', () => {
         it('should render the correct buttons text', () => {
             render(
                 <ResultsHeader

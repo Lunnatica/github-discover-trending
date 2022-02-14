@@ -4,7 +4,7 @@ import { ResultCard } from '../ResultCard';
 
 describe('<ResultCard />', () => {
     const result = {
-        id: '1',
+        id: 1,
         full_name: 'Name',
         description: 'description',
         stargazers_count: 'stars',
