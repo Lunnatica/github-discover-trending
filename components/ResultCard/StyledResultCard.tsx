@@ -36,6 +36,7 @@ const StyledResultFooter = styled.p`
 `;
 
 const StyledLink = styled.a`
+    cursor: pointer;
     color: ${colors.link};
     text-decoration: none;
     font-weight: 600;
@@ -46,8 +47,7 @@ const StyledLink = styled.a`
 
     :hover,
     :active {
-        box-shadow: 0 0.1rem 0 ${colors.link};
-        cursor: pointer;
+        text-decoration: underline;
     }
 `;
 
