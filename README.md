@@ -25,3 +25,20 @@ This project implements a client application for discovering trending repositori
     -   The favourited repositories will be visible through a filter. 
     -   The favourites won’t be sent back to GitHub’s servers but just stored locally (e.g localstorage, cookies etc...).
 -   The user can filter repositories by language.
+
+## Screenshots 
+
+### List of repositories, with ability to star and unstar (stored in cookies)
+
+<img width="1440" alt="1" src="https://user-images.githubusercontent.com/4697967/153939155-7f1e1e49-9c12-40f5-a2e2-79654c021bce.png">
+
+### Filtered by starred repositories
+
+<img width="1440" alt="2" src="https://user-images.githubusercontent.com/4697967/153939181-2a24a2b6-c4e3-4cd3-959a-a55b034dae5e.png">
+
+### Filtered by language
+
+<img width="1440" alt="3" src="https://user-images.githubusercontent.com/4697967/153939205-90789d27-f4b8-4128-b3b1-93d6e11ab12d.png">
+
+
+
