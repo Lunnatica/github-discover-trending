@@ -27,34 +27,17 @@ describe('<ResultsHeader />', () => {
         expect(changeTab).toHaveBeenCalledTimes(1);
     });
 
-    describe('when no languages are passed', () => {
-        it('should not show a LanguageSelector', () => {
-            render(
-                <ResultsHeader
-                    isInStarredTab={false}
-                    changeTab={changeTab}
-                    setSelectedLanguage={setSelectedLanguage}
-                    selectedLanguage={selectedLanguage}
-                    languages={[]}
-                />
-            );
-            expect(screen.queryByTestId('LanguageSelector')).toBeNull();
-        });
-    });
-
-    describe('when an array of languages is passed', () => {
-        it('should show a LanguageSelector', () => {
-            render(
-                <ResultsHeader
-                    isInStarredTab={false}
-                    changeTab={changeTab}
-                    setSelectedLanguage={setSelectedLanguage}
-                    selectedLanguage={selectedLanguage}
-                    languages={languages}
-                />
-            );
-            expect(screen.getByTestId('LanguageSelector'));
-        });
+    it('should render a LanguageSelector', () => {
+        render(
+            <ResultsHeader
+                isInStarredTab={false}
+                changeTab={changeTab}
+                setSelectedLanguage={setSelectedLanguage}
+                selectedLanguage={selectedLanguage}
+                languages={languages}
+            />
+        );
+        expect(screen.getByTestId('LanguageSelector'));
     });
 
     describe('when the user is in the starred repos tab', () => {
