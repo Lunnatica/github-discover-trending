@@ -2,6 +2,8 @@
 
 Displays a list of the github repositories created in the last 7 days with the most number of stars.
 
+You can try out the site live [here](https://github-discover-trending.vercel.app/).
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
