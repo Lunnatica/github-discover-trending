@@ -66,6 +66,7 @@ interface ResultsLayoutProps {
 
 const ResultsLayout: React.FC<ResultsLayoutProps> = ({ results = [] }) => {
     const [isInStarredTab, setIsInStarredTab] = useState(false);
+    // const [isSorted, setIsSorted] = useState(true);
     const [selectedLanguage, setSelectedLanguage] = useState('');
     const { starredReposIds } = useStarsContext();
 
@@ -90,8 +91,28 @@ const ResultsLayout: React.FC<ResultsLayoutProps> = ({ results = [] }) => {
         }
     }, [languages, selectedLanguage, repoList]);
 
+    // const resort = (repoList: GithubResult[]) => {
+    //     repoList.sort((a, b) => {
+    //         if (a.stargazers_count < b.stargazers_count) {
+    //             return -1;
+    //         }
+    //         if (a.stargazers_count > b.stargazers_count) {
+    //             return 1;
+    //         }
+    //         return 0;
+    //     });
+    //     setIsSorted(false);
+    // };
+
     return (
         <StyledResultsLayout>
+            {/* <button
+                onClick={() => {
+                    resort(repoList);
+                }}
+            >
+                Change sort order
+            </button> */}
             <ResultsHeader
                 changeTab={changeTab}
                 isInStarredTab={isInStarredTab}
